@@ -14,6 +14,7 @@ func _ready():
 	room.data = initial_room_data
 	room.door_entered.connect(_change_room)
 	add_child(room)
+	current_room = room
 
 func add_room(direction: Room.Direction, room_data: RoomData):
 	var room: Room = _room_template.instantiate()
@@ -21,6 +22,15 @@ func add_room(direction: Room.Direction, room_data: RoomData):
 	room.door_entered.connect(_change_room)
 	room.connected_rooms[direction] = current_room
 	current_room.connected_rooms[Room.flip_direction(direction)] = room
+	match direction:
+		Room.Direction.NORTH:
+			room.position.y -= 512
+		Room.Direction.EAST:
+			room.position.x += 512
+		Room.Direction.SOUTH:
+			room.position.y += 512
+		Room.Direction.WEST:
+			room.position.x -= 512
 	add_child(room)
 	return room
 

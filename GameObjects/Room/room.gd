@@ -7,7 +7,7 @@ enum Direction { NORTH, EAST, SOUTH, WEST }
 
 @export var data: RoomData
 
-var connected_rooms: Dictionary = { NORTH = null, EAST = null, SOUTH = null, WEST = null }
+var connected_rooms: Array[Room] = [null, null, null, null]
 
 @onready var _sprite := $Sprite
 @onready var _north_door := $NorthDoor/Hitbox
@@ -36,14 +36,14 @@ static func flip_direction(direction: Direction) -> Direction:
 			new_direction = Direction.EAST 
 	return new_direction
 
-func _on_north_entered(player: Node2D):
+func _on_north_entered(player: Player):
 	door_entered.emit(Direction.NORTH)
 
-func _on_east_entered(player: Node2D):
+func _on_east_entered(player: Player):
 	door_entered.emit(Direction.EAST)
 
-func _on_south_entered(player: Node2D):
+func _on_south_entered(player: Player):
 	door_entered.emit(Direction.SOUTH)
 
-func _on_west_entered(player: Node2D):
+func _on_west_entered(player: Player):
 	door_entered.emit(Direction.WEST)
