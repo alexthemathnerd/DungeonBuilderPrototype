@@ -1,7 +1,5 @@
 class_name Game
 extends Control
-## 
-##
 
 #region Signals
 signal menu_loaded
@@ -44,7 +42,7 @@ func unload_menu():
 	_loaded_menu = null
 
 func load_menu(menu_name: String) -> bool:
-	if menu_name == null:
+	if menu_name.is_empty():
 		return false
 	unload_menu()
 	var menu_path := "res://Menus/%s.tscn" % menu_name
@@ -64,7 +62,7 @@ func unload_overlay():
 	_loaded_overlay = null
 
 func load_overlay(overlay_name: String) -> bool:
-	if overlay_name == null:
+	if overlay_name.is_empty():
 		return false
 	unload_overlay()
 	var overlay_path := "res://Overlays/%s.tscn" % overlay_name
@@ -84,7 +82,7 @@ func unload_scene():
 	_loaded_scene = null
 
 func load_scene(scene_name: String) -> bool:
-	if scene_name == null:
+	if scene_name.is_empty():
 		return false
 	unload_scene()
 	var scene_path := "res://Scenes/%s.tscn" % scene_name

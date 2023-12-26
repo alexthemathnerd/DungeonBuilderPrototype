@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://mctsa72i00td"]
+
+[ext_resource type="Script" path="res://GameObjects/Room/room.gd" id="1_35t15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m86gs"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yri5"]
+size = Vector2(32, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75nxb"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80tgu"]
+size = Vector2(32, 96)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_35t15")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="WallHitbox" type="CollisionPolygon2D" parent="Wall"]
+position = Vector2(1, 0)
+build_mode = 1
+polygon = PackedVector2Array(-256, -256, 256, -256, 256, 256, -256, 256, -256, -256)
+
+[node name="NorthDoor" type="Area2D" parent="."]
+position = Vector2(0, -256)
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="NorthDoor"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_m86gs")
+
+[node name="EastDoor" type="Area2D" parent="."]
+position = Vector2(256, 0)
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="EastDoor" groups=["Doors"]]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_4yri5")
+
+[node name="SouthDoor" type="Area2D" parent="."]
+position = Vector2(0, 256)
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="SouthDoor" groups=["Doors"]]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_75nxb")
+
+[node name="WestDoor" type="Area2D" parent="."]
+position = Vector2(-256, 0)
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="WestDoor" groups=["Doors"]]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_80tgu")
+
+[connection signal="body_entered" from="NorthDoor" to="." method="_on_north_entered"]
+[connection signal="body_entered" from="EastDoor" to="." method="_on_east_entered"]
+[connection signal="body_entered" from="SouthDoor" to="." method="_on_south_entered"]
+[connection signal="body_entered" from="WestDoor" to="." method="_on_west_entered"]

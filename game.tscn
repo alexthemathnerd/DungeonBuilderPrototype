@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_diyf0")
+initial_scene = "debug"
 
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0

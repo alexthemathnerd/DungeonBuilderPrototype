@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp346dnf12nmp"]
+
+[ext_resource type="Script" path="res://GameObjects/Dungeon/dungeon.gd" id="1_au5ln"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_au5ln")
+
+[node name="Camera" type="Camera2D" parent="."]
