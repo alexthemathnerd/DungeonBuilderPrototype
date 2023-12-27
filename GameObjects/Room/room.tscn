@@ -1,64 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://mctsa72i00td"]
+[gd_scene load_steps=5 format=3 uid="uid://mctsa72i00td"]
 
 [ext_resource type="Script" path="res://GameObjects/Room/room.gd" id="1_35t15"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m86gs"]
-size = Vector2(96, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yri5"]
-size = Vector2(32, 96)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_75nxb"]
-size = Vector2(96, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_80tgu"]
-size = Vector2(32, 96)
+[ext_resource type="Resource" uid="uid://whdxmptsv058" path="res://Resources/Rooms/debug_room.tres" id="2_i5psh"]
+[ext_resource type="Texture2D" uid="uid://52gq8swlrr14" path="res://Assets/Debug/debug_room.png" id="2_tmp0e"]
+[ext_resource type="PackedScene" uid="uid://debxqyms3x783" path="res://GameObjects/Door/door.tscn" id="4_nyoeh"]
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_35t15")
+data = ExtResource("2_i5psh")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_tmp0e")
 
-[node name="Wall" type="StaticBody2D" parent="."]
+[node name="Walls" type="StaticBody2D" parent="."]
 
-[node name="WallHitbox" type="CollisionPolygon2D" parent="Wall"]
-position = Vector2(1, 0)
-build_mode = 1
-polygon = PackedVector2Array(-256, -256, 256, -256, 256, 256, -256, 256, -256, -256)
+[node name="LeftNorthWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-295, -158, -373, -237, -26, -237, -26, -158)
 
-[node name="NorthDoor" type="Area2D" parent="."]
-position = Vector2(0, -256)
-metadata/_edit_group_ = true
+[node name="RightNorthWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(295, -158, 373, -237, 26, -237, 26, -158)
 
-[node name="Hitbox" type="CollisionShape2D" parent="NorthDoor"]
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_m86gs")
+[node name="UpperEastWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(295, -158, 373, -237, 373, -26, 295, -26)
 
-[node name="EastDoor" type="Area2D" parent="."]
-position = Vector2(256, 0)
-metadata/_edit_group_ = true
+[node name="LowerEastWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(295, 158, 373, 237, 372, 26, 295, 26)
 
-[node name="Hitbox" type="CollisionShape2D" parent="EastDoor" groups=["Doors"]]
-position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_4yri5")
+[node name="LeftSouthWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-295, 158, -373, 237, -26, 237, -26, 158)
 
-[node name="SouthDoor" type="Area2D" parent="."]
-position = Vector2(0, 256)
-metadata/_edit_group_ = true
+[node name="RightSouthWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(295, 158, 373, 237, 26, 237, 26, 158)
 
-[node name="Hitbox" type="CollisionShape2D" parent="SouthDoor" groups=["Doors"]]
-position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_75nxb")
+[node name="UpperWestWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-295, -158, -373, -237, -373, -26, -295, -26)
 
-[node name="WestDoor" type="Area2D" parent="."]
-position = Vector2(-256, 0)
-metadata/_edit_group_ = true
+[node name="LowerWestWall" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-295, 158, -373, 237, -372, 26, -295, 26)
 
-[node name="Hitbox" type="CollisionShape2D" parent="WestDoor" groups=["Doors"]]
-position = Vector2(16, 0)
-shape = SubResource("RectangleShape2D_80tgu")
+[node name="NorthDoor" parent="." instance=ExtResource("4_nyoeh")]
+position = Vector2(0, -192)
 
-[connection signal="body_entered" from="NorthDoor" to="." method="_on_north_entered"]
-[connection signal="body_entered" from="EastDoor" to="." method="_on_east_entered"]
-[connection signal="body_entered" from="SouthDoor" to="." method="_on_south_entered"]
-[connection signal="body_entered" from="WestDoor" to="." method="_on_west_entered"]
+[node name="EastDoor" parent="." instance=ExtResource("4_nyoeh")]
+position = Vector2(330, 0)
+
+[node name="SouthDoor" parent="." instance=ExtResource("4_nyoeh")]
+position = Vector2(0, 192)
+
+[node name="WestDoor" parent="." instance=ExtResource("4_nyoeh")]
+position = Vector2(-330, 0)
