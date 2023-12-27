@@ -11,4 +11,3 @@ func move() -> bool:
 	animation.flip_h = velocity.x < 0
 	move_and_slide()
 	return velocity != Vector2.ZERO
-	

@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp346dnf12nmp"]
+[gd_scene load_steps=2 format=3 uid="uid://csvf8e6ne30eq"]
 
-[ext_resource type="Script" path="res://GameObjects/Dungeon/dungeon.gd" id="1_au5ln"]
+[ext_resource type="Script" path="res://GameObjects/Dungeon/dungeon.gd" id="1_0hawv"]
 
 [node name="Dungeon" type="Node2D"]
-script = ExtResource("1_au5ln")
+script = ExtResource("1_0hawv")
 
 [node name="Camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true

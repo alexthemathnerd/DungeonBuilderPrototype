@@ -1,14 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://qayjsmqbqj6f"]
 
-[ext_resource type="PackedScene" uid="uid://dp346dnf12nmp" path="res://GameObjects/Dungeon/dungeon.tscn" id="1_f3xoj"]
-[ext_resource type="Resource" uid="uid://whdxmptsv058" path="res://Resources/Rooms/debug_room.tres" id="2_epj3n"]
-[ext_resource type="PackedScene" uid="uid://bq57477075487" path="res://GameObjects/Player/player.tscn" id="2_xlu35"]
+[ext_resource type="PackedScene" uid="uid://csvf8e6ne30eq" path="res://GameObjects/Dungeon/dungeon.tscn" id="1_aswii"]
+[ext_resource type="Resource" uid="uid://whdxmptsv058" path="res://Resources/Rooms/debug_room.tres" id="2_f6s2j"]
+[ext_resource type="PackedScene" uid="uid://bq57477075487" path="res://GameObjects/Player/player.tscn" id="3_4q0cj"]
 
 [node name="Debug" type="Node2D"]
 
-[node name="Dungeon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_f3xoj")]
-initial_room_data = ExtResource("2_epj3n")
+[node name="Dungeon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_aswii")]
+initial_room_data = ExtResource("2_f6s2j")
 player = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("2_xlu35")]
-speed = 150.0
+[node name="Player" parent="." instance=ExtResource("3_4q0cj")]

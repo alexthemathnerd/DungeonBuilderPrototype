@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://mctsa72i00td"]
+[gd_scene load_steps=6 format=3 uid="uid://mctsa72i00td"]
 
 [ext_resource type="Script" path="res://GameObjects/Room/room.gd" id="1_35t15"]
 [ext_resource type="Resource" uid="uid://whdxmptsv058" path="res://Resources/Rooms/debug_room.tres" id="2_i5psh"]
 [ext_resource type="Texture2D" uid="uid://52gq8swlrr14" path="res://Assets/Debug/debug_room.png" id="2_tmp0e"]
-[ext_resource type="PackedScene" uid="uid://debxqyms3x783" path="res://GameObjects/Door/door.tscn" id="4_nyoeh"]
+[ext_resource type="PackedScene" uid="uid://1rkryr4oto7n" path="res://GameObjects/Door/door.tscn" id="4_nyoeh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwy3j"]
+size = Vector2(590, 316)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_35t15")
@@ -13,7 +16,14 @@ data = ExtResource("2_i5psh")
 texture_filter = 1
 texture = ExtResource("2_tmp0e")
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+monitorable = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("RectangleShape2D_uwy3j")
+
 [node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="LeftNorthWall" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(-295, -158, -373, -237, -26, -237, -26, -158)
@@ -39,46 +49,51 @@ polygon = PackedVector2Array(-295, -158, -373, -237, -373, -26, -295, -26)
 [node name="LowerWestWall" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(-295, 158, -373, 237, -372, 26, -295, 26)
 
-[node name="NorthDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="NorthDoor" parent="Doors" node_paths=PackedStringArray("teleport_location", "room_location") instance=ExtResource("4_nyoeh")]
 position = Vector2(0, -192)
 teleport_location = NodePath("Teleport")
 room_location = NodePath("RoomLocation")
 
-[node name="Teleport" type="Marker2D" parent="NorthDoor"]
+[node name="Teleport" type="Marker2D" parent="Doors/NorthDoor"]
 position = Vector2(0, -270)
 
-[node name="RoomLocation" type="Marker2D" parent="NorthDoor"]
+[node name="RoomLocation" type="Marker2D" parent="Doors/NorthDoor"]
 position = Vector2(0, -412)
 
-[node name="EastDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
+[node name="EastDoor" parent="Doors" node_paths=PackedStringArray("teleport_location", "room_location") instance=ExtResource("4_nyoeh")]
 position = Vector2(330, 0)
 teleport_location = NodePath("Teleport")
 room_location = NodePath("RoomLocation")
 
-[node name="Teleport" type="Marker2D" parent="EastDoor"]
-position = Vector2(348, 0)
+[node name="Teleport" type="Marker2D" parent="Doors/EastDoor"]
+position = Vector2(350, 0)
 
-[node name="RoomLocation" type="Marker2D" parent="EastDoor"]
+[node name="RoomLocation" type="Marker2D" parent="Doors/EastDoor"]
 position = Vector2(627, 0)
 
-[node name="SouthDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
+[node name="SouthDoor" parent="Doors" node_paths=PackedStringArray("teleport_location", "room_location") instance=ExtResource("4_nyoeh")]
 position = Vector2(0, 192)
 teleport_location = NodePath("Teleport")
 room_location = NodePath("RoomLocation")
 
-[node name="Teleport" type="Marker2D" parent="SouthDoor"]
+[node name="Teleport" type="Marker2D" parent="Doors/SouthDoor"]
 position = Vector2(0, 270)
 
-[node name="RoomLocation" type="Marker2D" parent="SouthDoor"]
+[node name="RoomLocation" type="Marker2D" parent="Doors/SouthDoor"]
 position = Vector2(0, 412)
 
-[node name="WestDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
+[node name="WestDoor" parent="Doors" node_paths=PackedStringArray("teleport_location", "room_location") instance=ExtResource("4_nyoeh")]
 position = Vector2(-330, 0)
 teleport_location = NodePath("Teleport")
 room_location = NodePath("RoomLocation")
 
-[node name="Teleport" type="Marker2D" parent="WestDoor"]
-position = Vector2(-348, 0)
+[node name="Teleport" type="Marker2D" parent="Doors/WestDoor"]
+position = Vector2(-350, 0)
 
-[node name="RoomLocation" type="Marker2D" parent="WestDoor"]
+[node name="RoomLocation" type="Marker2D" parent="Doors/WestDoor"]
 position = Vector2(-627, 0)
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_exited"]

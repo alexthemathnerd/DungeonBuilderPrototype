@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://brje164dxcp8" path="res://Assets/Player/Goblin/goblin.png" id="7_xsyhw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jutg"]
-size = Vector2(32, 24)
+size = Vector2(24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_47v2s"]
 atlas = ExtResource("7_xsyhw")
@@ -259,13 +259,15 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_5p04t")
+metadata/_edit_group_ = true
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("1_3b1lr")]
-position = Vector2(1.5, 12)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_3jutg")
 health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_qjg25")]
+position = Vector2(0, -24)
 
 [node name="State Machine" type="Node" parent="."]
 script = ExtResource("3_6amv1")
@@ -279,7 +281,8 @@ script = ExtResource("6_8s8xf")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -24)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_yhfby")
 animation = &"idle"
-frame_progress = 0.513152
+frame_progress = 0.202408

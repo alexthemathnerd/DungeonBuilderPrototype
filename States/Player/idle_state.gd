@@ -2,7 +2,6 @@ class_name PlayerIdle
 extends PlayerState
 
 func enter(_msg := {}) -> void:
-	print("IDLE")
 	player.velocity = Vector2.ZERO
 	player.animation.play("idle")
 

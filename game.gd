@@ -21,6 +21,7 @@ var _loaded_menu: Control
 var _loaded_overlay: Control
 var _loaded_scene: Node2D
 
+
 @onready var _menu := $Menu
 @onready var _overlay := $Overlay
 @onready var _scene := $Scene

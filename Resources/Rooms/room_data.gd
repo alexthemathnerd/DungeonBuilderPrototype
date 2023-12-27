@@ -6,4 +6,3 @@ extends Resource
 @export var has_east: bool
 @export var has_south: bool
 @export var has_west: bool
-
