@@ -9,8 +9,8 @@ signal transitioned(state_name: String)
 
 func _ready():
 	await owner.ready
-	for state: State in get_children():
-		state.state_machine = self
+	for a_state: State in get_children():
+		a_state.state_machine = self
 	state.enter()
 
 func _process(delta):

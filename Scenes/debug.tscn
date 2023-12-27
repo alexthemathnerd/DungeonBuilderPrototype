@@ -6,7 +6,9 @@
 
 [node name="Debug" type="Node2D"]
 
-[node name="Dungeon" parent="." instance=ExtResource("1_f3xoj")]
+[node name="Dungeon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_f3xoj")]
 initial_room_data = ExtResource("2_epj3n")
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_xlu35")]
+speed = 150.0

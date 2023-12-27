@@ -6,3 +6,4 @@
 script = ExtResource("1_au5ln")
 
 [node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true

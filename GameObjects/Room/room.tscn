@@ -39,14 +39,46 @@ polygon = PackedVector2Array(-295, -158, -373, -237, -373, -26, -295, -26)
 [node name="LowerWestWall" type="CollisionPolygon2D" parent="Walls"]
 polygon = PackedVector2Array(-295, 158, -373, 237, -372, 26, -295, 26)
 
-[node name="NorthDoor" parent="." instance=ExtResource("4_nyoeh")]
+[node name="NorthDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
 position = Vector2(0, -192)
+teleport_location = NodePath("Teleport")
+room_location = NodePath("RoomLocation")
 
-[node name="EastDoor" parent="." instance=ExtResource("4_nyoeh")]
+[node name="Teleport" type="Marker2D" parent="NorthDoor"]
+position = Vector2(0, -270)
+
+[node name="RoomLocation" type="Marker2D" parent="NorthDoor"]
+position = Vector2(0, -412)
+
+[node name="EastDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
 position = Vector2(330, 0)
+teleport_location = NodePath("Teleport")
+room_location = NodePath("RoomLocation")
 
-[node name="SouthDoor" parent="." instance=ExtResource("4_nyoeh")]
+[node name="Teleport" type="Marker2D" parent="EastDoor"]
+position = Vector2(348, 0)
+
+[node name="RoomLocation" type="Marker2D" parent="EastDoor"]
+position = Vector2(627, 0)
+
+[node name="SouthDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
 position = Vector2(0, 192)
+teleport_location = NodePath("Teleport")
+room_location = NodePath("RoomLocation")
 
-[node name="WestDoor" parent="." instance=ExtResource("4_nyoeh")]
+[node name="Teleport" type="Marker2D" parent="SouthDoor"]
+position = Vector2(0, 270)
+
+[node name="RoomLocation" type="Marker2D" parent="SouthDoor"]
+position = Vector2(0, 412)
+
+[node name="WestDoor" parent="." node_paths=PackedStringArray("teleport_location", "room_location") groups=["doors"] instance=ExtResource("4_nyoeh")]
 position = Vector2(-330, 0)
+teleport_location = NodePath("Teleport")
+room_location = NodePath("RoomLocation")
+
+[node name="Teleport" type="Marker2D" parent="WestDoor"]
+position = Vector2(-348, 0)
+
+[node name="RoomLocation" type="Marker2D" parent="WestDoor"]
+position = Vector2(-627, 0)

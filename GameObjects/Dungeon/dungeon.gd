@@ -2,42 +2,32 @@ class_name Dungeon
 extends Node2D
 
 @export var initial_room_data: RoomData
+@export var player: Player
 
 var current_room: Room
 
-@onready var _camera := $Camera
+@onready var _camera: Camera2D = $Camera
 @onready var _room_template := preload("res://GameObjects/Room/room.tscn")
 
 func _ready():
 	assert(initial_room_data != null, "A dungeon requires an initial room.")
-	var room: Room = _room_template.instantiate()
-	room.data = initial_room_data
-	room.door_entered.connect(_change_room)
-	add_child(room)
-	current_room = room
+	_add_room(null, initial_room_data)
 
-func add_room(direction: Room.Direction, room_data: RoomData):
+func _add_room(door: Door, room_data: RoomData) -> Room:
 	var room: Room = _room_template.instantiate()
 	room.data = room_data
 	room.door_entered.connect(_change_room)
-	room.connected_rooms[direction] = current_room
-	current_room.connected_rooms[Room.flip_direction(direction)] = room
-	match direction:
-		Room.Direction.NORTH:
-			room.position.y -= 512
-		Room.Direction.EAST:
-			room.position.x += 512
-		Room.Direction.SOUTH:
-			room.position.y += 512
-		Room.Direction.WEST:
-			room.position.x -= 512
+	if door != null:
+		room.global_position = door.room_location.global_position
 	add_child(room)
 	return room
 
-func _change_room(direction: Room.Direction):
-	var next_room = current_room.connected_rooms[direction]
+func _change_room(door: Door):
+	var next_room = door.room
 	if next_room == null:
-		# TODO: Make user chose room data
-		next_room = add_room(direction, RoomData.new())
-	current_room = next_room
-	_camera.position = current_room.position
+		next_room = _add_room(door, RoomData.new())
+	door.room = next_room
+	player.global_position = door.teleport_location.global_position
+	_camera.global_position = next_room.global_position
+	
+	
