@@ -6,8 +6,7 @@
 
 [node name="Debug" type="Node2D"]
 
-[node name="Dungeon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_aswii")]
+[node name="Dungeon" parent="." instance=ExtResource("1_aswii")]
 initial_room_data = ExtResource("2_f6s2j")
-player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_4q0cj")]

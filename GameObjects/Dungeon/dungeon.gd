@@ -2,12 +2,12 @@ class_name Dungeon
 extends Node2D
 
 @export var initial_room_data: RoomData
-
 @onready var _camera: Camera2D = $Camera
 @onready var _room_template := preload("res://GameObjects/Room/room.tscn")
 
 func _ready():
 	assert(initial_room_data != null, "A dungeon requires an initial room.")
+	Global.dungeon_context = DungeonContext.new()
 	_add_room(null, initial_room_data)
 
 func _add_room(door: Door, room_data: RoomData) -> void:
@@ -18,6 +18,7 @@ func _add_room(door: Door, room_data: RoomData) -> void:
 		room.global_position = door.room_location.global_position
 	room.add_to_group("rooms")
 	call_deferred("add_child", room)
+	Global.dungeon_context.get_modifier("Enemy_MaxHealth").increase(1.0)
 
 func _change_room(door: Door, player: Player):
 	player.global_position = door.teleport_location.global_position

@@ -13,9 +13,12 @@ signal scene_unloaded
 #endregion
 
 #region Fields
-@export var initial_menu: String
-@export var initial_overlay: String
-@export var initial_scene: String
+@export var initial_menu := ""
+@export var initial_overlay := ""
+@export var initial_scene := ""
+
+@export_category("Debug Settings")
+@export var debug_enabled: bool = false
 
 var _loaded_menu: Control
 var _loaded_overlay: Control
@@ -25,6 +28,9 @@ var _loaded_scene: Node2D
 @onready var _menu := $Menu
 @onready var _overlay := $Overlay
 @onready var _scene := $Scene
+@onready var _debug := $Debug
+
+@onready var _dungeon_display := preload("res://Debug/dungeon_display.tscn")
 #endregion
 
 #region Builtins Methods
@@ -33,6 +39,8 @@ func _ready():
 	load_menu(initial_menu)
 	load_overlay(initial_overlay)
 	load_scene(initial_scene)
+	if not OS.is_debug_build():
+		_debug.queue_free()
 #endregion
 
 #region Menu Methods
@@ -93,4 +101,10 @@ func load_scene(scene_name: String) -> bool:
 		_scene.add_child(_loaded_scene)
 		scene_loaded.emit()
 	return scene_resource != null
+#endregion
+
+#region Debug Methods
+func enable_dungeon_display():
+	var dungeon_display := _dungeon_display.instantiate()
+	_debug.add_child(dungeon_display)
 #endregion
