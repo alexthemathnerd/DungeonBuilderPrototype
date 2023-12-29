@@ -2,6 +2,8 @@ class_name PlayerIdle
 extends PlayerState
 
 func enter(_msg := {}) -> void:
+	print("Entering Idle. Last direction: ", player.last_direction)
+	player.animation.flip_h = player.last_direction == 1
 	player.velocity = Vector2.ZERO
 	player.animation.play("idle")
 
