@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://g6hd0oywxgof"]
+
+[ext_resource type="Script" path="res://Debug/Overlays/dungeon_context_overlay.gd" id="1_6njco"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p0hde"]
+
+[node name="DungeonContextOverlay" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p0hde")
+script = ExtResource("1_6njco")
+
+[node name="ModifierSection" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Vbox" type="VBoxContainer" parent="ModifierSection"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ModifierLabel" type="Label" parent="ModifierSection/Vbox"]
+layout_mode = 2
+text = "Modifiers:"
+
+[node name="ModifierList" type="VBoxContainer" parent="ModifierSection/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="visibility_changed" from="." to="." method="_on_show"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj43eltybsu6i"]
+
+[ext_resource type="Script" path="res://Debug/Overlays/metrics_overlay.gd" id="1_qe8pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssye2"]
+
+[node name="MetricsOverlay" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ssye2")
+script = ExtResource("1_qe8pf")
+
+[node name="ClientSection" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Vbox" type="VBoxContainer" parent="ClientSection"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FPSLabel" type="Label" parent="ClientSection/Vbox"]
+layout_mode = 2
+text = "FPS: _"
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -29,12 +29,12 @@ var _loaded_scene: Node2D
 @onready var _overlay := $Overlay
 @onready var _scene := $Scene
 @onready var _debug := $Debug
-
-@onready var _dungeon_display := preload("res://Debug/dungeon_display.tscn")
+@onready var _debug_display := $Debug/DebugDisplay
 #endregion
 
 #region Builtins Methods
 func _ready():
+	Logger.log(name, "Loading Game.", Logger.Severity.DEBUG)
 	Global.game = self as Game
 	load_menu(initial_menu)
 	load_overlay(initial_overlay)
@@ -104,7 +104,6 @@ func load_scene(scene_name: String) -> bool:
 #endregion
 
 #region Debug Methods
-func enable_dungeon_display():
-	var dungeon_display := _dungeon_display.instantiate()
-	_debug.add_child(dungeon_display)
+func get_debug_display() -> DebugDisplay:
+	return _debug_display
 #endregion

@@ -2,7 +2,9 @@ class_name Dungeon
 extends Node2D
 
 @export var initial_room_data: RoomData
+
 @onready var _camera: Camera2D = $Camera
+
 @onready var _room_template := preload("res://GameObjects/Room/room.tscn")
 
 func _ready():

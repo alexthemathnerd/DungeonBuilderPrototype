@@ -13,8 +13,8 @@ func run(args: Array[String], terminal: DebugTerminal):
 		return
 	var command: Command = terminal.get_command(args[0])
 	if command != null:
-		terminal.terminal_print(args[0])
-		terminal.terminal_print(description, DebugTerminal.PrintType.Hint)
-		terminal.terminal_print("Usage: {0}".format([usage]))
+		terminal.terminal_print(command.name)
+		terminal.terminal_print(command.description, DebugTerminal.PrintType.Hint)
+		terminal.terminal_print("Usage: {0}".format([command.usage]))
 	else:
 		terminal.terminal_print("The command '{0}' does not exist.".format([args[0]]), DebugTerminal.PrintType.Error)

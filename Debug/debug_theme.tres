@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dycabqg11x6ba"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dycabqg11x6ba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0aea"]
 content_margin_left = 10.0
@@ -10,6 +10,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="SystemFont" id="SystemFont_gq1ce"]
+font_weight = 800
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8h12c"]
 content_margin_left = 5.0
@@ -36,6 +39,7 @@ bg_color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [resource]
 Button/styles/normal = SubResource("StyleBoxFlat_h0aea")
+Label/fonts/font = SubResource("SystemFont_gq1ce")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_8h12c")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10

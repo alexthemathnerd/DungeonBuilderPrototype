@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw5ul5xvuikaf"]
+[gd_scene load_steps=4 format=3 uid="uid://dw5ul5xvuikaf"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_diyf0"]
 [ext_resource type="PackedScene" uid="uid://b6r7anpfl0x2r" path="res://Debug/debug_terminal.tscn" id="2_e7dtf"]
+[ext_resource type="PackedScene" uid="uid://bqt5nsuvw1j08" path="res://Debug/debug_display.tscn" id="3_l5vn6"]
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -24,9 +25,11 @@ process_mode = 1
 process_mode = 1
 
 [node name="Menu" type="CanvasLayer" parent="."]
-process_mode = 2
 
 [node name="Debug" type="CanvasLayer" parent="."]
 
 [node name="Terminal" parent="Debug" instance=ExtResource("2_e7dtf")]
 visible = false
+
+[node name="DebugDisplay" parent="Debug" instance=ExtResource("3_l5vn6")]
+process_mode = 3
