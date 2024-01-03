@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bpqjyevdpefqp"]
+
+[ext_resource type="Script" path="res://Resources/Enemy/enemy_data.gd" id="1_voep7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj7ty"]
+
+[resource]
+script = ExtResource("1_voep7")
+enemy_type = "GOBLIN"
+animation = SubResource("SpriteFrames_uj7ty")
