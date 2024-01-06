@@ -28,5 +28,9 @@ size_flags_horizontal = 8
 [node name="FPSLabel" type="Label" parent="ClientSection/Vbox"]
 layout_mode = 2
 text = "FPS: _"
-horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FrameTimeLabel" type="Label" parent="ClientSection/Vbox"]
+layout_mode = 2
+text = "Frame Time: _ ms"
 vertical_alignment = 1
